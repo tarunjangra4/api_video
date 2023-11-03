@@ -1,16 +1,19 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 const authController = require("./controllers/authController");
 const userProfileController = require("./controllers/userProfileController");
+const awsController = require("./controllers/awsController");
 
 // app.use(cors("http://localhost:3000"));
 app.use(cors());
 app.use(express.json()); // it is just a middleware will parse the body into json
-mongoose.connect("mongodb://localhost:27017/video-app");
+
+const MONGO_URL = process.env.MONGO_URL;
+mongoose.connect(MONGO_URL);
 
 // Register and login routes from authController
 app.post("/api/register", authController.register);
@@ -89,4 +92,5 @@ function authenticateTokenMiddleware(req, res, next) {
 //   }
 // });
 
-app.listen(3005);
+const PORT = process.env.PORT || 3005;
+app.listen(PORT);

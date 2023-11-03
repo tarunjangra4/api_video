@@ -37,6 +37,12 @@ exports.register = async (req, res) => {
 
 // login api app.post("/api/login",
 exports.login = async (req, res) => {
+  if (!req.body.email) {
+    return res.status(401).json({
+      status: "error",
+      error: "Please Provide a valid email.",
+    });
+  }
   try {
     const user = await User.findOne({
       email: req.body.email,
@@ -63,9 +69,10 @@ exports.login = async (req, res) => {
             email: user.email,
           },
           process.env.ACCESS_TOKEN_SECRET,
+          { algorithm: "RS256" },
           { expiresIn: 604800 }
         );
-        console.log("token");
+        console.log("token", token);
         return res.status(200).json({ status: "ok", token });
       } else {
         return res
