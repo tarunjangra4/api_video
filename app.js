@@ -13,7 +13,12 @@ app.use(cors());
 app.use(express.json()); // it is just a middleware will parse the body into json
 
 const MONGO_URL = process.env.MONGO_URL;
-mongoose.connect(MONGO_URL);
+// mongoose.connect(MONGO_URL);
+mongoose.connect(
+  "mongodb+srv://tarunjangra4:" +
+    encodeURIComponent("Tarun@123") + // URL-encode the password
+    "@cluster0.euqnn.mongodb.net/video-app?retryWrites=true&w=majority"
+);
 
 // Register and login routes from authController
 app.post("/api/register", authController.register);
