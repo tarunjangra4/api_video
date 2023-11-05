@@ -9,7 +9,6 @@ require("dotenv").config();
 exports.register = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
     await User.create({
       email: req.body.email,
       password: hashedPassword,
@@ -37,16 +36,24 @@ exports.register = async (req, res) => {
 
 // login api app.post("/api/login",
 exports.login = async (req, res) => {
-  if (!req.body.email) {
+  const authHeader = req.body.headers.Authorization.split(" ")[1];
+  const decodedCredentials = atob(authHeader).split(":");
+  console.log("decodedCredentials ", decodedCredentials);
+  // if (!req.body.email) {
+  if (!decodedCredentials[0]) {
     return res.status(401).json({
       status: "error",
       error: "Please Provide a valid email.",
     });
   }
+  console.log("mid");
   try {
+    console.log("here");
     const user = await User.findOne({
-      email: req.body.email,
+      // email: req.body.email,
+      email: decodedCredentials[0],
     });
+    console.log(user);
     if (!user) {
       return res.status(401).json({
         status: "error",
@@ -57,7 +64,8 @@ exports.login = async (req, res) => {
       console.log(user);
 
       const isPasswordValid = await bcrypt.compare(
-        req.body.password,
+        // req.body.password,
+        decodedCredentials[1],
         user.password
       );
       console.log(isPasswordValid);
@@ -69,7 +77,7 @@ exports.login = async (req, res) => {
             email: user.email,
           },
           process.env.ACCESS_TOKEN_SECRET,
-          { algorithm: "RS256" },
+          // { algorithm: "RS256" }
           { expiresIn: 604800 }
         );
         console.log("token", token);
@@ -81,6 +89,7 @@ exports.login = async (req, res) => {
       }
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       status: "error",
       error: "Internal server error. Please try again later.",
