@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const authController = require("./controllers/authController");
 const userProfileController = require("./controllers/userProfileController");
-const awsController = require("./controllers/awsController");
+// const awsController = require("./controllers/awsController");
 
 // app.use(cors("http://localhost:3000"));
 app.use(cors());
