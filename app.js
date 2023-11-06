@@ -13,11 +13,18 @@ app.use(cors());
 app.use(express.json()); // it is just a middleware will parse the body into json
 
 const MONGO_URL = process.env.MONGO_URL;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_DB = process.env.MONGO_DB;
 // mongoose.connect(MONGO_URL);
+// mongoose.connect(
+//   "mongodb+srv://tarunjangra4:" +
+//     encodeURIComponent("Tarun@123") + // URL-encode the password
+//     "@cluster0.euqnn.mongodb.net/video-app?retryWrites=true&w=majority"
+// );
 mongoose.connect(
-  "mongodb+srv://tarunjangra4:" +
-    encodeURIComponent("Tarun@123") + // URL-encode the password
-    "@cluster0.euqnn.mongodb.net/video-app?retryWrites=true&w=majority"
+  MONGO_URL +
+    encodeURIComponent(MONGO_PASSWORD) + // URL-encode the password
+    MONGO_DB
 );
 
 app.get("/", (req, res) => {
