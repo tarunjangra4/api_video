@@ -39,8 +39,8 @@ exports.login = async (req, res) => {
   const authHeader = req.body.headers.Authorization.split(" ")[1];
   const decodedCredentials = atob(authHeader).split(":");
   console.log("decodedCredentials ", decodedCredentials);
-  // if (!req.body.email) {
-  if (!decodedCredentials[0]) {
+  if (!req.body.email) {
+    // if (!decodedCredentials[0]) {
     return res.status(401).json({
       status: "error",
       error: "Please Provide a valid email.",
@@ -50,8 +50,8 @@ exports.login = async (req, res) => {
   try {
     console.log("here");
     const user = await User.findOne({
-      // email: req.body.email,
-      email: decodedCredentials[0],
+      email: req.body.email,
+      // email: decodedCredentials[0],
     });
     console.log(user);
     if (!user) {
@@ -64,8 +64,8 @@ exports.login = async (req, res) => {
       console.log(user);
 
       const isPasswordValid = await bcrypt.compare(
-        // req.body.password,
-        decodedCredentials[1],
+        req.body.password,
+        // decodedCredentials[1],
         user.password
       );
       console.log(isPasswordValid);
