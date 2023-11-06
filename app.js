@@ -20,6 +20,10 @@ mongoose.connect(
     "@cluster0.euqnn.mongodb.net/video-app?retryWrites=true&w=majority"
 );
 
+app.get("/", (req, res) => {
+  return res.send("Testing here...");
+});
+
 // Register and login routes from authController
 app.post("/api/register", authController.register);
 app.post("/api/login", authController.login);
