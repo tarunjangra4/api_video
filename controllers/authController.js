@@ -36,7 +36,7 @@ exports.register = async (req, res) => {
 
 // login api app.post("/api/login",
 exports.login = async (req, res) => {
-  return res.send(`Testing here... ${req.body.email} ${req.body.password}`);
+  // return res.send(`Testing here... ${req.body.email} ${req.body.password}`);
   // const authHeader = req.body.headers.Authorization.split(" ")[1];
   // const decodedCredentials = atob(authHeader).split(":");
   // console.log("decodedCredentials ", decodedCredentials);
@@ -93,7 +93,8 @@ exports.login = async (req, res) => {
     console.log(error);
     return res.status(500).json({
       status: "error",
-      error: "Internal server error. Please try again later.",
+      // error: "Internal server error. Please try again later.",
+      error: `${error} ${req.body.email} ${req.body.password}`,
     });
   }
 };
