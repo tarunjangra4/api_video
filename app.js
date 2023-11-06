@@ -58,4 +58,4 @@ function authenticateTokenMiddleware(req, res, next) {
 }
 
 const PORT = process.env.PORT || 3005;
-app.listen(3005);
+app.listen(PORT);
