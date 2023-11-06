@@ -28,7 +28,9 @@ mongoose.connect(
 );
 
 app.get("/", (req, res) => {
-  return res.send("Testing here...");
+  return res.send(
+    `Testing here... MONGO_URL=${MONGO_URL} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DB=${MONGO_DB} PORT=${PORT} ACCESS_TOKEN_SECRET=${process.env.ACCESS_TOKEN_SECRET}`
+  );
 });
 
 // Register and login routes from authController
