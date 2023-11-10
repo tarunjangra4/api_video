@@ -28,11 +28,11 @@ mongoose.connect(
 );
 
 // testing for environment variables
-app.get("/", (req, res) => {
-  return res.send(
-    `Testing here... MONGO_URL=${MONGO_URL} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DB=${MONGO_DB} PORT=${PORT} ACCESS_TOKEN_SECRET=${process.env.ACCESS_TOKEN_SECRET}`
-  );
-});
+// app.get("/", (req, res) => {
+//   return res.send(
+//     `Testing here... MONGO_URL=${MONGO_URL} MONGO_PASSWORD=${MONGO_PASSWORD} MONGO_DB=${MONGO_DB} PORT=${PORT} ACCESS_TOKEN_SECRET=${process.env.ACCESS_TOKEN_SECRET}`
+//   );
+// });
 
 // Register and login routes from authController
 app.post("/api/register", authController.register);
