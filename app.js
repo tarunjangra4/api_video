@@ -58,7 +58,7 @@ app.get("/api/content", dataController.getData);
 //
 //
 function authenticateTokenMiddleware(req, res, next) {
-  const authHeader = req.headers["authorization"];
+  const authHeader = req.body.headers.Authorization.split(" ")[1];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) {
     return res
