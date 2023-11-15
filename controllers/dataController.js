@@ -41,48 +41,48 @@ exports.uploadData = async (req, res) => {
     if (contentType === "Introduction") {
       console.log("if");
       await Introduction.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 7");
     } else if (contentType === "SEO") {
       console.log("start 8");
       await SEO.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 9");
     } else if (contentType === "GoogleAds") {
       console.log("start 10");
       await GoogleAds.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 11");
     } else if (contentType === "FacebookAds") {
       console.log("start 12");
       await FacebookAds.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 13");
     } else if (contentType === "CRM") {
       console.log("start 14");
       await CRM.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 15");
     } else if (contentType === "ChatBots") {
       console.log("start 16");
       await ChatBots.create({
-        videoUrl: req.body.videoUrl,
-        imageUrl: req.body.imageUrl,
+        videoKey: req.body.videoKey,
+        imageKey: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 17");
