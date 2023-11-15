@@ -63,7 +63,9 @@ exports.login = async (req, res) => {
           "User not found. Please check your email or register a new account.",
       });
     } else {
-      console.log(user);
+      console.log("id ");
+      console.log(user._id.toHexString());
+      console.log(typeof user._id.toHexString());
 
       const isPasswordValid = await bcrypt.compare(
         // req.body.password,
@@ -83,6 +85,10 @@ exports.login = async (req, res) => {
           { expiresIn: 604800 }
         );
         console.log("token", token);
+        // let obj = {
+        //   token,
+        //   userData:
+        // }
         return res.status(200).json({ status: "ok", token });
       } else {
         return res

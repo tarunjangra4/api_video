@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const authController = require("./controllers/authController");
 const userProfileController = require("./controllers/userProfileController");
+const dataController = require("./controllers/dataController");
 // const awsController = require("./controllers/awsController");
 
 // app.use(cors("http://localhost:3000"));
@@ -50,6 +51,12 @@ app.put(
   userProfileController.updateUserProfile
 );
 
+// video data api's
+app.post("/api/content", dataController.uploadData);
+app.get("/api/content", dataController.getData);
+
+//
+//
 function authenticateTokenMiddleware(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -72,4 +79,5 @@ function authenticateTokenMiddleware(req, res, next) {
 }
 
 const PORT = process.env.PORT;
+console.log(PORT);
 app.listen(PORT);
