@@ -41,8 +41,8 @@ exports.uploadData = async (req, res) => {
     if (contentType === "Introduction") {
       console.log("if");
       await Introduction.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 7");
