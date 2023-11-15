@@ -22,20 +22,20 @@ exports.uploadData = async (req, res) => {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const email = decoded.email;
     const user = await User.findOne({ email: email });
-    console.log("start 4");
+    console.log("start 4 ", req.body);
     if (!user) {
       return res
         .status(404)
         .json({ status: "error", error: "User not found." });
     }
-    console.log("start 5");
+    console.log("start 5 ", req.body);
     if (user.userRole !== "admin") {
       return res.status(401).json({
         status: "error",
         error: "You are not allowed to do this operation.",
       });
     }
-    console.log("start 6");
+    console.log("start 6 ", req.body);
     const contentType = req.body.contentType;
     console.log("contentType ", contentType);
     if (contentType === "Introduction") {
