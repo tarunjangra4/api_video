@@ -11,7 +11,7 @@ require("dotenv").config();
 exports.uploadData = async (req, res) => {
   console.log("start 1 ", req.headers);
   const authHeader = req.body.headers.Authorization.split(" ")[1];
-  console.log("authHeader ", authHeader);
+  console.log("authHeader ", { ...authHeader });
   const token = authHeader && authHeader.split(" ")[1];
   console.log("start 2 ", token);
   if (!token) {
