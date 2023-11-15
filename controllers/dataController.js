@@ -49,40 +49,40 @@ exports.uploadData = async (req, res) => {
     } else if (contentType === "SEO") {
       console.log("start 8");
       await SEO.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 9");
     } else if (contentType === "GoogleAds") {
       console.log("start 10");
       await GoogleAds.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 11");
     } else if (contentType === "FacebookAds") {
       console.log("start 12");
       await FacebookAds.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 13");
     } else if (contentType === "CRM") {
       console.log("start 14");
       await CRM.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 15");
     } else if (contentType === "ChatBots") {
       console.log("start 16");
       await ChatBots.create({
-        videoKey: req.body.videoKey,
-        imageKey: req.body.imageKey,
+        video_url: req.body.videoKey,
+        thumbnail_url: req.body.imageKey,
         createdAt: Date.now(),
       });
       console.log("start 17");
