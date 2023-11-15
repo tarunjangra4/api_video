@@ -17,7 +17,7 @@ exports.uploadData = async (req, res) => {
       .status(401)
       .json({ status: "error", error: "Token is missing." });
   }
-  console.log("start 3");
+  console.log("start 3 ", req.body);
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const email = decoded.email;
