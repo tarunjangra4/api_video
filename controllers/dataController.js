@@ -37,7 +37,7 @@ exports.uploadData = async (req, res) => {
     }
     console.log("start 6");
     const contentType = req.body.contentType;
-
+    console.log("contentType ", contentType);
     if (contentType === "Introduction") {
       console.log("if");
       await Introduction.create({
