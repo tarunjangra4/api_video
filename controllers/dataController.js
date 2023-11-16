@@ -43,6 +43,7 @@ exports.uploadData = async (req, res) => {
       await Introduction.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 7");
@@ -51,6 +52,7 @@ exports.uploadData = async (req, res) => {
       await SEO.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 9");
@@ -59,6 +61,7 @@ exports.uploadData = async (req, res) => {
       await GoogleAds.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 11");
@@ -67,6 +70,7 @@ exports.uploadData = async (req, res) => {
       await FacebookAds.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 13");
@@ -75,6 +79,7 @@ exports.uploadData = async (req, res) => {
       await CRM.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 15");
@@ -83,6 +88,7 @@ exports.uploadData = async (req, res) => {
       await ChatBots.create({
         video_url: req.body.videoKey,
         thumbnail_url: req.body.imageKey,
+        videoName: req.body.name,
         createdAt: Date.now(),
       });
       console.log("start 17");
