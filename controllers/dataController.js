@@ -115,9 +115,8 @@ exports.uploadData = async (req, res) => {
 
 // update user profile api app.put("/api/user-profile",
 exports.getData = async (req, res) => {
-  console.log("start 1 ", req.headers);
-  //   const authHeader = req.headers["authorization"];
-  const token = req.body.headers.Authorization.split(" ")[1];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader.split(" ")[1];
   console.log("start 2 ", token);
   if (!token) {
     return res
@@ -132,6 +131,39 @@ exports.getData = async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       return res.status(404).json({ status: "error", error: "User not found" });
+    }
+
+    let contentType = "Introduction";
+    if (contentType === "Introduction") {
+      console.log("if");
+      Introduction.find({}, (err, data) => {
+        if (err) {
+          console.error("Error fetching data:", err);
+        } else {
+          console.log("Fetched data:", data);
+          return res.status(200).json({ content: data });
+        }
+      });
+      return res.status(200).json({ content: [] });
+    } else if (contentType === "SEO") {
+      console.log("start 8");
+
+      console.log("start 9");
+    } else if (contentType === "GoogleAds") {
+      console.log("start 10");
+
+      console.log("start 11");
+    } else if (contentType === "FacebookAds") {
+      console.log("start 12");
+
+      console.log("start 13");
+    } else if (contentType === "CRM") {
+      console.log("start 14");
+
+      console.log("start 15");
+    } else if (contentType === "ChatBots") {
+      console.log("start 16");
+      console.log("start 17");
     }
 
     return res
