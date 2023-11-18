@@ -37,7 +37,7 @@ exports.register = async (req, res) => {
 // login api app.post("/api/login",
 exports.login = async (req, res) => {
   // return res.send(`Testing here... ${req.body.email} ${req.body.password}`);
-  console.log("req.body.headers ", req.headers["authorization"]);
+  // console.log("req.body.headers ", req.headers["authorization"]);
   const authHeader = req.body.headers.Authorization.split(" ")[1];
   const decodedCredentials = atob(authHeader).split(":");
   // console.log("decodedCredentials ", decodedCredentials);

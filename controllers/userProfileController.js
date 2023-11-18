@@ -79,7 +79,7 @@ exports.getUserRole = async (req, res) => {
 
 // update user profile api app.put("/api/user-profile",
 exports.updateUserProfile = async (req, res) => {
-  const authHeader = req.headers["authorization"];
+  // const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
     return res
