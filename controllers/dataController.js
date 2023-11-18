@@ -148,7 +148,7 @@ exports.getData = async (req, res) => {
       //   console.log("data fetched successfully ", data);
       const newData = Introduction.find()
         .then((result) => {
-          console.log("result ", result.json());
+          console.log("result ", result);
           return result;
         })
         .catch((error1) => console.log(error1));
