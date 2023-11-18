@@ -4,7 +4,7 @@ require("dotenv").config();
 
 // get user profile api app.get("/api/user-profile",
 exports.getUserProfile = async (req, res) => {
-  const authHeader = req.headers["authorization"];
+  // const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
     return res
@@ -40,7 +40,7 @@ exports.getUserProfile = async (req, res) => {
 };
 
 exports.getUserRole = async (req, res) => {
-  const authHeader = req.headers["authorization"];
+  // const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
     return res
