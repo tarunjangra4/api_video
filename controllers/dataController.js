@@ -136,7 +136,7 @@ exports.getData = async (req, res) => {
     let contentType = "Introduction";
     if (contentType === "Introduction") {
       console.log("if");
-      const data = Introduction.find({});
+      const data = Introduction.find({}) || [];
       //   Introduction.find({}, (err, data) => {
       //     if (err) {
       //       console.error("Error fetching data:", err);
@@ -146,7 +146,7 @@ exports.getData = async (req, res) => {
       //     }
       //   });
       console.log("data fetched successfully");
-      return res.status(200).json({ content: [] });
+      return res.status(200).json({ content: data });
     } else if (contentType === "SEO") {
       console.log("start 8");
 
