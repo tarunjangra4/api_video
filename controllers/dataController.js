@@ -145,7 +145,7 @@ exports.getData = async (req, res) => {
       //       return res.status(200).json({ content: data });
       //     }
       //   });
-      console.log("data fetched successfully");
+      console.log("data fetched successfully ", data);
       return res.status(200).json({ content: data });
     } else if (contentType === "SEO") {
       console.log("start 8");
