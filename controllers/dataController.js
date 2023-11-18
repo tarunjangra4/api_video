@@ -1,3 +1,4 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const Introduction = require("../models/introduction.model");
@@ -6,7 +7,14 @@ const GoogleAds = require("../models/google_ads.model");
 const FacebookAds = require("../models/facebook_ads.model");
 const CRM = require("../models/crm.model");
 const ChatBots = require("../models/chat_bots.model");
-require("dotenv").config();
+const {
+  S3Client,
+  GetObjectCommand,
+  PutObjectCommand,
+  ListObjectsV2Command,
+  DeleteObjectCommand,
+} = require("@aws-sdk/client-s3");
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 
 exports.uploadData = async (req, res) => {
   //   console.log("start 1 ", req.headers);
@@ -113,6 +121,51 @@ exports.uploadData = async (req, res) => {
   }
 };
 
+const s3Client = new S3Client({
+  region: "ca-central-1",
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  },
+});
+
+// // before calling this function check if the user has access or not in both frontend and backend
+async function getVideoURL(key) {
+  const command = new GetObjectCommand({
+    Bucket: "vid.app",
+    Key: key,
+  });
+  const url = await getSignedUrl(s3Client, command);
+  console.log("video url ", url);
+  return url;
+}
+
+async function getImageURL(key) {
+  const command = new GetObjectCommand({
+    Bucket: "thumbnails.video.app",
+    Key: key,
+  });
+  const url = await getSignedUrl(s3Client, command);
+  console.log("image url ", url);
+  return url;
+}
+
+async function getDetails(data = []) {
+  let newData = [];
+  data.map(async (item) => {
+    let obj = {
+      id: item._id,
+      videoName: item.videoName,
+      videoUrl: await getVideoURL(item.video_url),
+      thumbnailUrl: await getImageURL(item.thumbnail_url),
+      createdAt: item.createdAt,
+    };
+    newData.push(obj);
+  });
+  console.log("new data ", newData);
+  return newData;
+}
+
 // update user profile api app.put("/api/user-profile",
 exports.getData = async (req, res) => {
   const authHeader = req.headers["authorization"];
@@ -149,6 +202,7 @@ exports.getData = async (req, res) => {
       Introduction.find()
         .then((result) => {
           console.log("result ", result);
+          console.log("getDetails(result) ", getDetails(result));
           return res.status(200).json({ content: result || [] });
         })
         .catch((error1) => console.log(error1));
