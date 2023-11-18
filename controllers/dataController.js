@@ -136,7 +136,7 @@ exports.getData = async (req, res) => {
     let contentType = "Introduction";
     if (contentType === "Introduction") {
       console.log("if");
-      const data = Introduction.find({}) || [];
+      //   const data = Introduction.find({}) || [];
       //   Introduction.find({}, (err, data) => {
       //     if (err) {
       //       console.error("Error fetching data:", err);
@@ -145,7 +145,7 @@ exports.getData = async (req, res) => {
       //       return res.status(200).json({ content: data });
       //     }
       //   });
-      console.log("data fetched successfully ", data);
+      //   console.log("data fetched successfully ", data);
       const newData = Introduction.find({}).toArray(function (err, result) {
         if (err) throw err;
         console.log(result);
