@@ -45,7 +45,7 @@ app.get(
   // authenticateTokenMiddleware,
   userProfileController.getUserProfile
 );
-app.post(
+app.get(
   "/api/user-role",
   // authenticateTokenMiddleware,
   userProfileController.getUserRole
