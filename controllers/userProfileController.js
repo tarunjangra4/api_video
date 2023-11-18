@@ -4,8 +4,8 @@ require("dotenv").config();
 
 // get user profile api app.get("/api/user-profile",
 exports.getUserProfile = async (req, res) => {
-  // const authHeader = req.headers["authorization"];
-  const token = req.body.headers.Authorization.split(" ")[1];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader.split(" ")[1];
   if (!token) {
     return res
       .status(401)
@@ -80,8 +80,8 @@ exports.getUserRole = async (req, res) => {
 
 // update user profile api app.put("/api/user-profile",
 exports.updateUserProfile = async (req, res) => {
-  // const authHeader = req.headers["authorization"];
-  const token = req.body.headers.Authorization.split(" ")[1];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader.split(" ")[1];
   if (!token) {
     return res
       .status(401)

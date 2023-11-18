@@ -146,12 +146,10 @@ exports.getData = async (req, res) => {
       //     }
       //   });
       //   console.log("data fetched successfully ", data);
-      const newData = Introduction.find({}).toArray(function (err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-      });
-      console.log("new data ", newData);
+      Introduction.find()
+        .then((result) => console.log("result ", result))
+        .catch((error1) => console.log(error1));
+      //   console.log("new data ", newData);
       return res.status(200).json({ content: [] });
     } else if (contentType === "SEO") {
       console.log("start 8");
