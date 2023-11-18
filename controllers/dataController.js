@@ -193,6 +193,8 @@ exports.getData = async (req, res) => {
           console.log("result ", result);
           getDetails(result).then((data) => {
             // console.log("getDetails(result) ", data);
+            console.log("access key", process.env.ACCESS_KEY_ID);
+            console.log("secret key", process.env.SECRET_ACCESS_KEY);
             return res.status(200).json({ content: data || [] });
           });
         })
