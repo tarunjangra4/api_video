@@ -10,6 +10,7 @@ require("dotenv").config();
 
 exports.uploadData = async (req, res) => {
   console.log("start 1 ", req.headers);
+  const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   console.log("start 2 ", token);
   if (!token) {
@@ -115,6 +116,7 @@ exports.uploadData = async (req, res) => {
 // update user profile api app.put("/api/user-profile",
 exports.getData = async (req, res) => {
   console.log("start 1 ", req.headers);
+  const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   console.log("start 2 ", token);
   if (!token) {

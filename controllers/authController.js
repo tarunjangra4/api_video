@@ -37,12 +37,16 @@ exports.register = async (req, res) => {
 // login api app.post("/api/login",
 exports.login = async (req, res) => {
   // return res.send(`Testing here... ${req.body.email} ${req.body.password}`);
-  // console.log("req.body.headers ", req.body.headers.Authorization);
+  console.log("req.body.headers ", req.headers["authorization"]);
   const authHeader = req.body.headers.Authorization.split(" ")[1];
   const decodedCredentials = atob(authHeader).split(":");
   // console.log("decodedCredentials ", decodedCredentials);
+  const [userEmail, userPassword] = [
+    decodedCredentials[0],
+    decodedCredentials[1],
+  ];
   // if (!req.body.email) {
-  if (!decodedCredentials[0]) {
+  if (!userEmail) {
     return res.status(401).json({
       status: "error",
       error: "Please Provide a valid email.",
@@ -53,7 +57,7 @@ exports.login = async (req, res) => {
     console.log("here");
     const user = await User.findOne({
       // email: req.body.email,
-      email: decodedCredentials[0],
+      email: userEmail,
     });
     console.log(user);
     if (!user) {
@@ -69,7 +73,7 @@ exports.login = async (req, res) => {
 
       const isPasswordValid = await bcrypt.compare(
         // req.body.password,
-        decodedCredentials[1],
+        userPassword,
         user.password
       );
       console.log(isPasswordValid);

@@ -5,7 +5,7 @@ require("dotenv").config();
 // get user profile api app.get("/api/user-profile",
 exports.getUserProfile = async (req, res) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
     return res
       .status(401)
@@ -39,10 +39,48 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
+exports.getUserRole = async (req, res) => {
+  const authHeader = req.headers["authorization"];
+  const token = req.body.headers.Authorization.split(" ")[1];
+  if (!token) {
+    return res
+      .status(401)
+      .json({ status: "error", error: "Token is missing." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const email = decoded.email;
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ status: "error", error: "User not found." });
+    }
+
+    const userRole = user.userRole || "user";
+
+    return res.status(200).json({ status: "ok", userRole });
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({
+        status: "error",
+        error: "Token has expired.",
+      });
+    } else {
+      return res.status(401).json({
+        status: "error",
+        error: "Token is invalid or has been tampered with",
+      });
+    }
+  }
+};
+
 // update user profile api app.put("/api/user-profile",
 exports.updateUserProfile = async (req, res) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
     return res
       .status(401)

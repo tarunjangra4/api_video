@@ -42,8 +42,13 @@ app.post("/api/login", authController.login);
 // User profile and quote routes from respective controllers
 app.get(
   "/api/user-profile",
-  authenticateTokenMiddleware,
+  // authenticateTokenMiddleware,
   userProfileController.getUserProfile
+);
+app.get(
+  "/api/user-role",
+  // authenticateTokenMiddleware,
+  userProfileController.getUserRole
 );
 app.put(
   "/api/user-profile",
