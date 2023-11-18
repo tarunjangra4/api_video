@@ -9,7 +9,7 @@ const ChatBots = require("../models/chat_bots.model");
 require("dotenv").config();
 
 exports.uploadData = async (req, res) => {
-  console.log("start 1 ", req.headers);
+  //   console.log("start 1 ", req.headers);
   //   const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   console.log("start 2 ", token);
