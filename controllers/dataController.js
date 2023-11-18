@@ -172,10 +172,6 @@ exports.getData = async (req, res) => {
       console.log("start 16");
       console.log("start 17");
     }
-
-    return res
-      .status(200)
-      .json({ status: "ok", message: "Profile updated successfully." });
   } catch (error) {
     return res.status(401).json({
       status: "error",
