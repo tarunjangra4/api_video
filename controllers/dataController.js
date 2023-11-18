@@ -135,8 +135,7 @@ async function getVideoURL(key) {
     Bucket: "vid.app",
     Key: key,
   });
-  const url = await getSignedUrl(s3Client, command);
-  console.log("video url ", url);
+  const url = await getSignedUrl(s3Client, command, { expiresIn: 604800 });
   return url;
 }
 
@@ -145,8 +144,7 @@ async function getImageURL(key) {
     Bucket: "thumbnails.video.app",
     Key: key,
   });
-  const url = await getSignedUrl(s3Client, command);
-  console.log("image url ", url);
+  const url = await getSignedUrl(s3Client, command, { expiresIn: 604800 });
   return url;
 }
 
@@ -194,7 +192,7 @@ exports.getData = async (req, res) => {
         .then((result) => {
           console.log("result ", result);
           getDetails(result).then((data) => {
-            console.log("getDetails(result) ", data);
+            // console.log("getDetails(result) ", data);
             return res.status(200).json({ content: data || [] });
           });
         })
