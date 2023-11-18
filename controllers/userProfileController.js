@@ -43,6 +43,7 @@ exports.getUserRole = async (req, res) => {
   console.log(
     "*************************** user role called ********************************"
   );
+  console.log(req.headers);
   // const authHeader = req.headers["authorization"];
   const token = req.body.headers.Authorization.split(" ")[1];
   if (!token) {
