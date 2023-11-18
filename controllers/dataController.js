@@ -152,8 +152,8 @@ async function getImageURL(key) {
 
 async function getDetails(data = []) {
   let newData = [];
-  data.map(async (item) => {
-    let obj = {
+  for (const item of data) {
+    const obj = {
       id: item._id,
       videoName: item.videoName,
       videoUrl: await getVideoURL(item.video_url),
@@ -161,7 +161,7 @@ async function getDetails(data = []) {
       createdAt: item.createdAt,
     };
     newData.push(obj);
-  });
+  }
   console.log("new data ", newData);
   return newData;
 }
