@@ -146,14 +146,14 @@ exports.getData = async (req, res) => {
       //     }
       //   });
       //   console.log("data fetched successfully ", data);
-      const newData = Introduction.find()
+      Introduction.find()
         .then((result) => {
           console.log("result ", result);
-          return result;
+          return res.status(200).json({ content: result });
         })
         .catch((error1) => console.log(error1));
-      console.log("new data ", newData);
-      return res.status(200).json({ content: newData });
+
+      return res.status(200).json({ content: [] });
     } else if (contentType === "SEO") {
       console.log("start 8");
 
