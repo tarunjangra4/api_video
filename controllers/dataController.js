@@ -190,22 +190,13 @@ exports.getData = async (req, res) => {
     if (contentType === "Introduction") {
       console.log("if");
       //   const data = Introduction.find({}) || [];
-      //   Introduction.find({}, (err, data) => {
-      //     if (err) {
-      //       console.error("Error fetching data:", err);
-      //     } else {
-      //       console.log("Fetched data:", data);
-      //       return res.status(200).json({ content: data });
-      //     }
-      //   });
-      //   console.log("data fetched successfully ", data);
       Introduction.find()
         .then((result) => {
           console.log("result ", result);
-          getDetails(result).then((allData) => {
-            console.log("getDetails(result) ", allData);
+          getDetails(result).then((data) => {
+            console.log("getDetails(result) ", data);
+            return res.status(200).json({ content: data || [] });
           });
-          return res.status(200).json({ content: result || [] });
         })
         .catch((error1) => console.log(error1));
     } else if (contentType === "SEO") {
