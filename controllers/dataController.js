@@ -117,7 +117,7 @@ exports.uploadData = async (req, res) => {
 exports.getData = async (req, res) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader.split(" ")[1];
-  console.log("start 2 ", token);
+  console.log("token in get content ", token);
   if (!token) {
     return res
       .status(401)
@@ -136,14 +136,15 @@ exports.getData = async (req, res) => {
     let contentType = "Introduction";
     if (contentType === "Introduction") {
       console.log("if");
-      Introduction.find({}, (err, data) => {
-        if (err) {
-          console.error("Error fetching data:", err);
-        } else {
-          console.log("Fetched data:", data);
-          return res.status(200).json({ content: data });
-        }
-      });
+      const data = Introduction.find({});
+      //   Introduction.find({}, (err, data) => {
+      //     if (err) {
+      //       console.error("Error fetching data:", err);
+      //     } else {
+      //       console.log("Fetched data:", data);
+      //       return res.status(200).json({ content: data });
+      //     }
+      //   });
       console.log("data fetched successfully");
       return res.status(200).json({ content: [] });
     } else if (contentType === "SEO") {
