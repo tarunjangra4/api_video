@@ -136,7 +136,7 @@ exports.getData = async (req, res) => {
     let contentType = "Introduction";
     if (contentType === "Introduction") {
       console.log("if");
-      const data = Introduction.find({}).toArray() || [];
+      const data = Introduction.find({}) || [];
       //   Introduction.find({}, (err, data) => {
       //     if (err) {
       //       console.error("Error fetching data:", err);
