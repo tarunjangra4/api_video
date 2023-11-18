@@ -148,8 +148,8 @@ exports.getData = async (req, res) => {
       //   console.log("data fetched successfully ", data);
       const newData = Introduction.find()
         .then((result) => {
-          console.log("result ", result);
-          return res.json(result);
+          console.log("result ", result.json());
+          return result;
         })
         .catch((error1) => console.log(error1));
       console.log("new data ", newData);
